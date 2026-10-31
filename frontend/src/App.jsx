@@ -14,6 +14,7 @@ import ForbiddenPage from './pages/public/ForbiddenPage'
 import ComponentsDemo from './pages/public/ComponentsDemo'
 import InstitutionDashboard from './pages/institution/InstitutionDashboard'
 import StudentDashboard from './pages/student/StudentDashboard'
+import RecruiterDashboard from './pages/recruiter/RecruiterDashboard'
 
 // Crée une route pour chaque entrée du menu d'un rôle.
 // `pages` associe un chemin à une vraie page ; les autres restent provisoires.
@@ -66,7 +67,11 @@ function App() {
           </Route>
 
           <Route element={<RoleRoute allowedRoles={[ROLES.RECRUITER]} />}>
-            <Route element={<DashboardLayout />}>{roleRoutes('RECRUITER')}</Route>
+            <Route element={<DashboardLayout />}>
+              {roleRoutes('RECRUITER', {
+                '/recruteur': <RecruiterDashboard />,
+              })}
+            </Route>
           </Route>
         </Routes>
       </AuthProvider>
