@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import PublicLayout from './components/layout/PublicLayout'
 import PlaceholderPage from './pages/public/PlaceholderPage'
+import ComponentsDemo from './pages/public/ComponentsDemo'
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
           <Route path="/verifier" element={<PlaceholderPage title="Vérifier un diplôme" />} />
           <Route path="/connexion" element={<PlaceholderPage title="Connexion" />} />
           <Route path="/inscription" element={<PlaceholderPage title="Créer un compte" />} />
+          <Route path="/composants" element={<ComponentsDemo />} />
           <Route path="*" element={<PlaceholderPage title="Page introuvable" />} />
         </Route>
       </Routes>
