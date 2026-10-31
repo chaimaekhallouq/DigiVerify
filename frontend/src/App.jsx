@@ -12,12 +12,17 @@ import RegisterPage from './pages/public/RegisterPage'
 import ForgotPasswordPage from './pages/public/ForgotPasswordPage'
 import ForbiddenPage from './pages/public/ForbiddenPage'
 import ComponentsDemo from './pages/public/ComponentsDemo'
+import InstitutionDashboard from './pages/institution/InstitutionDashboard'
 
-// Crée une route provisoire pour chaque entrée du menu d'un rôle.
-// Elles seront remplacées une par une par les vraies pages.
-function roleRoutes(role) {
+// Crée une route pour chaque entrée du menu d'un rôle.
+// `pages` associe un chemin à une vraie page ; les autres restent provisoires.
+function roleRoutes(role, pages = {}) {
   return NAVIGATION[role].map((item) => (
-    <Route key={item.to} path={item.to} element={<PlaceholderPage title={item.label} />} />
+    <Route
+      key={item.to}
+      path={item.to}
+      element={pages[item.to] || <PlaceholderPage title={item.label} />}
+    />
   ))
 }
 
@@ -43,7 +48,11 @@ function App() {
             <Route element={<DashboardLayout />}>{roleRoutes('ADMIN')}</Route>
           </Route>
           <Route element={<RoleRoute allowedRoles={[ROLES.INSTITUTION]} />}>
-            <Route element={<DashboardLayout />}>{roleRoutes('INSTITUTION')}</Route>
+            <Route element={<DashboardLayout />}>
+              {roleRoutes('INSTITUTION', {
+                '/etablissement': <InstitutionDashboard />,
+              })}
+            </Route>
           </Route>
           <Route element={<RoleRoute allowedRoles={[ROLES.STUDENT]} />}>
             <Route element={<DashboardLayout />}>{roleRoutes('STUDENT')}</Route>

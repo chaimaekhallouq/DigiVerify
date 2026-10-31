@@ -728,3 +728,18 @@ h1, h2, h3, h4, h5, h6 {
     padding: 2rem 0;
   }
 }
+
+/* ---------- 14. En-tête de page et chargement ---------- */
+.dv-page-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.dv-loading {
+  padding: 4rem 1rem;
+  text-align: center;
+}
