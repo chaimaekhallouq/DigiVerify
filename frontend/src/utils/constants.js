@@ -29,3 +29,10 @@ export const VERIFICATION_RESULT = {
   REVOKED: 'REVOKED',
   UNTRUSTED: 'UNTRUSTED',
 }
+// Page d'accueil de chaque rôle après connexion
+export const ROLE_HOME = {
+  ADMIN: '/admin',
+  INSTITUTION: '/etablissement',
+  STUDENT: '/etudiant',
+  RECRUITER: '/recruteur',
+}
