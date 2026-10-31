@@ -5,6 +5,8 @@ import PublicLayout from './components/layout/PublicLayout'
 import PlaceholderPage from './pages/public/PlaceholderPage'
 import HomePage from './pages/public/HomePage'
 import LoginPage from './pages/public/LoginPage'
+import RegisterPage from './pages/public/RegisterPage'
+import ForgotPasswordPage from './pages/public/ForgotPasswordPage'
 import ComponentsDemo from './pages/public/ComponentsDemo'
 
 // PAGE PROVISOIRE : sera remplacée par les vrais tableaux de bord (phase 4)
@@ -34,8 +36,8 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/verifier" element={<PlaceholderPage title="Vérifier un diplôme" />} />
             <Route path="/connexion" element={<LoginPage />} />
-            <Route path="/inscription" element={<PlaceholderPage title="Créer un compte" />} />
-            <Route path="/mot-de-passe-oublie" element={<PlaceholderPage title="Mot de passe oublié" />} />
+            <Route path="/inscription" element={<RegisterPage />} />
+            <Route path="/mot-de-passe-oublie" element={<ForgotPasswordPage />} />
             <Route path="/composants" element={<ComponentsDemo />} />
 
             {/* Espaces provisoires (non protégés pour l'instant) */}
