@@ -13,6 +13,7 @@ import ForgotPasswordPage from './pages/public/ForgotPasswordPage'
 import ForbiddenPage from './pages/public/ForbiddenPage'
 import ComponentsDemo from './pages/public/ComponentsDemo'
 import InstitutionDashboard from './pages/institution/InstitutionDashboard'
+import StudentDashboard from './pages/student/StudentDashboard'
 
 // Crée une route pour chaque entrée du menu d'un rôle.
 // `pages` associe un chemin à une vraie page ; les autres restent provisoires.
@@ -47,6 +48,7 @@ function App() {
           <Route element={<RoleRoute allowedRoles={[ROLES.ADMIN]} />}>
             <Route element={<DashboardLayout />}>{roleRoutes('ADMIN')}</Route>
           </Route>
+
           <Route element={<RoleRoute allowedRoles={[ROLES.INSTITUTION]} />}>
             <Route element={<DashboardLayout />}>
               {roleRoutes('INSTITUTION', {
@@ -54,9 +56,15 @@ function App() {
               })}
             </Route>
           </Route>
+
           <Route element={<RoleRoute allowedRoles={[ROLES.STUDENT]} />}>
-            <Route element={<DashboardLayout />}>{roleRoutes('STUDENT')}</Route>
+            <Route element={<DashboardLayout />}>
+              {roleRoutes('STUDENT', {
+                '/etudiant': <StudentDashboard />,
+              })}
+            </Route>
           </Route>
+
           <Route element={<RoleRoute allowedRoles={[ROLES.RECRUITER]} />}>
             <Route element={<DashboardLayout />}>{roleRoutes('RECRUITER')}</Route>
           </Route>

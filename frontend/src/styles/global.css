@@ -743,3 +743,57 @@ h1, h2, h3, h4, h5, h6 {
   padding: 4rem 1rem;
   text-align: center;
 }
+
+
+/* ---------- 15. Cartes de diplômes et QR Code ---------- */
+.dv-diploma {
+  height: 100%;
+  padding: 1.5rem;
+}
+
+.dv-diploma__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.dv-diploma__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: var(--dv-primary-soft);
+  color: var(--dv-primary);
+  font-size: 1.3rem;
+}
+
+.dv-diploma__meta {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.35rem 1rem;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.dv-diploma__meta dt {
+  color: var(--dv-text-muted);
+  font-weight: 500;
+}
+
+.dv-diploma__meta dd {
+  margin: 0;
+  font-weight: 500;
+  word-break: break-word;
+}
+
+.dv-qr {
+  display: inline-block;
+  padding: 1rem;
+  border: 1px solid var(--dv-border);
+  border-radius: var(--dv-radius);
+  background: #ffffff;
+  text-align: center;
+}
