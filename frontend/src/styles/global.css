@@ -559,3 +559,172 @@ h1, h2, h3, h4, h5, h6 {
     padding: 1.75rem;
   }
 }
+
+
+
+
+/* ---------- 13. Mise en page des tableaux de bord ---------- */
+:root {
+  --dv-sidebar-width: 260px;
+}
+
+.dv-app {
+  min-height: 100vh;
+}
+
+.dv-app__main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.dv-app__content {
+  flex: 1;
+  padding: 1.5rem 0;
+}
+
+/* Barre latérale */
+.dv-sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1040;
+  display: flex;
+  flex-direction: column;
+  width: var(--dv-sidebar-width);
+  background: var(--dv-navy);
+  transform: translateX(-100%);
+  transition: transform 0.2s ease;
+}
+
+.dv-sidebar.is-open {
+  transform: translateX(0);
+}
+
+.dv-sidebar__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1035;
+  background: rgba(15, 42, 74, 0.5);
+}
+
+.dv-sidebar__brand {
+  padding: 1.25rem 1.25rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dv-sidebar__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 1rem 0.75rem;
+  overflow-y: auto;
+}
+
+.dv-sidebar__link {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.65rem 0.9rem;
+  border-radius: 8px;
+  color: #cbd5e1;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.dv-sidebar__link:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+}
+
+.dv-sidebar__link.active {
+  background: var(--dv-primary);
+  color: #ffffff;
+}
+
+/* Barre du haut */
+.dv-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 1020;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-height: 64px;
+  padding: 0.5rem 1rem;
+  background: var(--dv-surface);
+  border-bottom: 1px solid var(--dv-border);
+}
+
+.dv-topbar__spacer {
+  flex: 1;
+}
+
+.dv-topbar__menu-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--dv-border);
+  border-radius: 8px;
+  background: var(--dv-surface);
+  color: var(--dv-navy);
+  font-size: 1.1rem;
+}
+
+.dv-topbar__user {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.dv-topbar__avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--dv-primary-soft);
+  color: var(--dv-primary);
+  font-weight: 700;
+}
+
+.dv-topbar__identity {
+  display: none;
+  flex-direction: column;
+  line-height: 1.25;
+}
+
+.dv-topbar__identity small {
+  color: var(--dv-text-muted);
+}
+
+/* Ordinateur : la barre latérale est toujours visible */
+@media (min-width: 992px) {
+  .dv-sidebar {
+    transform: none;
+  }
+
+  .dv-sidebar__overlay {
+    display: none;
+  }
+
+  .dv-app__main {
+    margin-left: var(--dv-sidebar-width);
+  }
+
+  .dv-topbar__menu-btn {
+    display: none;
+  }
+
+  .dv-topbar__identity {
+    display: flex;
+  }
+
+  .dv-app__content {
+    padding: 2rem 0;
+  }
+}
