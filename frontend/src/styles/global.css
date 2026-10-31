@@ -355,3 +355,68 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 0.88rem;
   color: var(--dv-text-muted);
 }
+
+/* ---------- 11. Tableaux ---------- */
+.dv-table__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--dv-border);
+}
+
+.dv-table__search {
+  position: relative;
+  flex: 1 1 260px;
+  max-width: 380px;
+}
+
+.dv-table__search .form-control {
+  padding-left: 2.4rem;
+}
+
+.dv-table__search-icon {
+  position: absolute;
+  top: 50%;
+  left: 0.85rem;
+  transform: translateY(-50%);
+  color: var(--dv-text-muted);
+  pointer-events: none;
+}
+
+.dv-table thead th {
+  background: var(--dv-bg);
+  color: var(--dv-text-muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  padding: 0.8rem 1.25rem;
+  border-bottom: 1px solid var(--dv-border);
+}
+
+.dv-table tbody td {
+  padding: 0.9rem 1.25rem;
+  border-color: var(--dv-border);
+}
+
+.dv-table tbody tr:hover {
+  background: var(--dv-primary-soft);
+}
+
+.dv-table__empty {
+  padding: 2.5rem 1rem;
+  text-align: center;
+  color: var(--dv-text-muted);
+}
+
+.dv-table__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.8rem 1.25rem;
+  border-top: 1px solid var(--dv-border);
+}

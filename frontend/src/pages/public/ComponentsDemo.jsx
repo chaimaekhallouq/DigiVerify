@@ -4,6 +4,17 @@ import StatusBadge from '../../components/ui/StatusBadge'
 import Alert from '../../components/ui/Alert'
 import FormField from '../../components/ui/FormField'
 import StatCard from '../../components/ui/StatCard'
+import DataTable from '../../components/ui/DataTable'
+import { mockDiplomas } from '../../mocks/diplomas'
+import { formatDate } from '../../utils/formatters'
+
+const diplomaColumns = [
+  { key: 'id', header: 'Référence' },
+  { key: 'student', header: 'Étudiant' },
+  { key: 'title', header: 'Diplôme' },
+  { key: 'issuedAt', header: "Date d'émission", render: (row) => formatDate(row.issuedAt) },
+  { key: 'status', header: 'Statut', render: (row) => <StatusBadge status={row.status} /> },
+]
 
 function ComponentsDemo() {
   const [email, setEmail] = useState('')
@@ -78,6 +89,16 @@ function ComponentsDemo() {
         />
         <button type="submit" className="btn btn-primary">Valider</button>
       </form>
+
+      <h2 className="h5 mb-3 mt-5">Tableau de diplômes</h2>
+      <DataTable
+        columns={diplomaColumns}
+        rows={mockDiplomas}
+        searchKeys={['id', 'student', 'title']}
+        searchPlaceholder="Rechercher un étudiant ou un diplôme…"
+        emptyMessage="Aucun diplôme ne correspond à votre recherche."
+        pageSize={5}
+      />
     </div>
   )
 }
