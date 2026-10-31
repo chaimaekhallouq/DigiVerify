@@ -12,6 +12,7 @@ import RegisterPage from './pages/public/RegisterPage'
 import ForgotPasswordPage from './pages/public/ForgotPasswordPage'
 import ForbiddenPage from './pages/public/ForbiddenPage'
 import ComponentsDemo from './pages/public/ComponentsDemo'
+import AdminDashboard from './pages/admin/AdminDashboard'
 import InstitutionDashboard from './pages/institution/InstitutionDashboard'
 import StudentDashboard from './pages/student/StudentDashboard'
 import RecruiterDashboard from './pages/recruiter/RecruiterDashboard'
@@ -47,7 +48,11 @@ function App() {
 
           {/* Espaces protégés : barre latérale + barre du haut */}
           <Route element={<RoleRoute allowedRoles={[ROLES.ADMIN]} />}>
-            <Route element={<DashboardLayout />}>{roleRoutes('ADMIN')}</Route>
+            <Route element={<DashboardLayout />}>
+              {roleRoutes('ADMIN', {
+                '/admin': <AdminDashboard />,
+              })}
+            </Route>
           </Route>
 
           <Route element={<RoleRoute allowedRoles={[ROLES.INSTITUTION]} />}>

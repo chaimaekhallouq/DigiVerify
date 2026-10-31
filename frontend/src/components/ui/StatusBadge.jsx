@@ -5,6 +5,7 @@ import {
   FaBan,
   FaQuestionCircle,
   FaPen,
+  FaPauseCircle,
 } from 'react-icons/fa'
 
 // Pour chaque statut : libellé français, icône et classe CSS
@@ -16,6 +17,8 @@ const STATUS_CONFIG = {
   UNTRUSTED: { label: 'Non fiable', icon: <FaQuestionCircle />, tone: 'untrusted' },
   DRAFT: { label: 'Brouillon', icon: <FaPen />, tone: 'draft' },
   ISSUED: { label: 'Émis', icon: <FaCheckCircle />, tone: 'authentic' },
+  ACTIVE: { label: 'Actif', icon: <FaCheckCircle />, tone: 'authentic' },
+  SUSPENDED: { label: 'Suspendu', icon: <FaPauseCircle />, tone: 'untrusted' },
 }
 
 function StatusBadge({ status }) {
