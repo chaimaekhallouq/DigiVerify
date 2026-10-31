@@ -1,8 +1,300 @@
-/* Styles globaux DigiVerify – la charte graphique complète sera ajoutée en Phase 2 */
+/* ==========================================================
+   DigiVerify – Charte graphique
+   1. Variables (design tokens)
+   2. Styles de base
+   3. Surcharge de Bootstrap (boutons, formulaires, liens)
+   4. Composants maison (cartes, badges de statut)
+   ========================================================== */
 
+/* ---------- 1. Variables ---------- */
+:root {
+  /* Couleurs de marque */
+  --dv-navy: #0f2a4a;
+  --dv-primary: #1f5fbf;
+  --dv-primary-dark: #17488f;
+  --dv-primary-soft: #e8f0fb;
+  --dv-accent: #0d9488;
+
+  /* Neutres */
+  --dv-bg: #f5f7fa;
+  --dv-surface: #ffffff;
+  --dv-border: #e2e8f0;
+  --dv-text: #1f2937;
+  --dv-text-muted: #64748b;
+
+  /* Statuts de vérification */
+  --dv-authentic: #15803d;
+  --dv-authentic-soft: #e7f6ec;
+  --dv-modified: #c2410c;
+  --dv-modified-soft: #fdeee6;
+  --dv-invalid: #b91c1c;
+  --dv-invalid-soft: #fdeaea;
+  --dv-revoked: #475569;
+  --dv-revoked-soft: #eef1f5;
+  --dv-untrusted: #a16207;
+  --dv-untrusted-soft: #fdf3dc;
+
+  /* Forme et ombres */
+  --dv-radius: 0.625rem;
+  --dv-shadow: 0 1px 3px rgba(15, 42, 74, 0.08), 0 1px 2px rgba(15, 42, 74, 0.06);
+
+  /* Variables Bootstrap redéfinies avec nos couleurs */
+  --bs-primary: #1f5fbf;
+  --bs-primary-rgb: 31, 95, 191;
+  --bs-body-font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --bs-body-color: #1f2937;
+  --bs-body-bg: #f5f7fa;
+  --bs-link-color: #1f5fbf;
+  --bs-link-hover-color: #17488f;
+  --bs-border-radius: 0.625rem;
+}
+
+/* ---------- 2. Styles de base ---------- */
 body {
   margin: 0;
-  background-color: #f5f7fa;
-  color: #1f2937;
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--dv-bg);
+  color: var(--dv-text);
+  font-family: var(--bs-body-font-family);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--dv-navy);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.text-muted {
+  color: var(--dv-text-muted) !important;
+}
+
+/* ---------- 3. Surcharge de Bootstrap ---------- */
+.btn {
+  font-weight: 600;
+  padding: 0.55rem 1.1rem;
+}
+
+.btn-primary {
+  --bs-btn-bg: var(--dv-primary);
+  --bs-btn-border-color: var(--dv-primary);
+  --bs-btn-hover-bg: var(--dv-primary-dark);
+  --bs-btn-hover-border-color: var(--dv-primary-dark);
+  --bs-btn-active-bg: var(--dv-primary-dark);
+  --bs-btn-active-border-color: var(--dv-primary-dark);
+  --bs-btn-disabled-bg: var(--dv-primary);
+  --bs-btn-disabled-border-color: var(--dv-primary);
+}
+
+.btn-outline-primary {
+  --bs-btn-color: var(--dv-primary);
+  --bs-btn-border-color: var(--dv-primary);
+  --bs-btn-hover-bg: var(--dv-primary);
+  --bs-btn-hover-border-color: var(--dv-primary);
+  --bs-btn-active-bg: var(--dv-primary-dark);
+  --bs-btn-active-border-color: var(--dv-primary-dark);
+}
+
+.form-label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--dv-navy);
+}
+
+.form-control,
+.form-select {
+  padding: 0.6rem 0.8rem;
+  border-color: var(--dv-border);
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--dv-primary);
+  box-shadow: 0 0 0 0.2rem rgba(31, 95, 191, 0.2);
+}
+
+/* ---------- 4. Composants maison ---------- */
+.dv-card {
+  background: var(--dv-surface);
+  border: 1px solid var(--dv-border);
+  border-radius: var(--dv-radius);
+  box-shadow: var(--dv-shadow);
+}
+
+/* Badge de statut (pastille) */
+.dv-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.dv-status--authentic { color: var(--dv-authentic); background: var(--dv-authentic-soft); }
+.dv-status--modified  { color: var(--dv-modified);  background: var(--dv-modified-soft); }
+.dv-status--invalid   { color: var(--dv-invalid);   background: var(--dv-invalid-soft); }
+.dv-status--revoked   { color: var(--dv-revoked);   background: var(--dv-revoked-soft); }
+.dv-status--untrusted { color: var(--dv-untrusted); background: var(--dv-untrusted-soft); }
+
+
+/* ---------- 5. Logo ---------- */
+.dv-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  color: var(--dv-navy);
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+.dv-logo:hover {
+  color: var(--dv-navy);
+}
+
+.dv-logo__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+  background: var(--dv-navy);
+  color: #ffffff;
+  font-size: 1.05rem;
+}
+
+.dv-logo--light,
+.dv-logo--light:hover {
+  color: #ffffff;
+}
+
+.dv-logo--light .dv-logo__icon {
+  background: var(--dv-primary);
+}
+
+/* ---------- 6. Barre de navigation publique ---------- */
+.dv-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+  background: var(--dv-surface);
+  border-bottom: 1px solid var(--dv-border);
+}
+
+.dv-navbar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 68px;
+}
+
+.dv-navbar__menu {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dv-nav-link {
+  padding: 0.5rem 0.9rem;
+  border-radius: 8px;
+  color: var(--dv-text);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.dv-nav-link:hover {
+  background: var(--dv-bg);
+  color: var(--dv-navy);
+}
+
+.dv-nav-link.active {
+  background: var(--dv-primary-soft);
+  color: var(--dv-primary);
+}
+
+.dv-navbar__toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--dv-border);
+  border-radius: 8px;
+  background: var(--dv-surface);
+  color: var(--dv-navy);
+  font-size: 1.1rem;
+}
+
+/* Mobile : le menu devient une colonne repliable */
+@media (max-width: 767.98px) {
+  .dv-navbar__inner {
+    flex-wrap: wrap;
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+  }
+
+  .dv-navbar__toggle {
+    display: inline-flex;
+  }
+
+  .dv-navbar__menu {
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    padding: 0.75rem 0 0.5rem;
+  }
+
+  .dv-navbar__menu.is-open {
+    display: flex;
+  }
+
+  .dv-navbar__menu .btn {
+    text-align: center;
+  }
+}
+
+/* ---------- 7. Pied de page ---------- */
+.dv-footer {
+  background: var(--dv-navy);
+  color: #cbd5e1;
+  padding: 3rem 0 1.5rem;
+  margin-top: 3rem;
+}
+
+.dv-footer__title {
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+}
+
+.dv-footer__text {
+  max-width: 420px;
+  font-size: 0.9rem;
+}
+
+.dv-footer__link {
+  color: #cbd5e1;
+  text-decoration: none;
+  font-size: 0.9rem;
+  line-height: 2;
+}
+
+.dv-footer__link:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.dv-footer__divider {
+  border-color: rgba(255, 255, 255, 0.15);
+  margin: 2rem 0 1rem;
+}
+
+.dv-footer__copy {
+  font-size: 0.82rem;
+  color: #94a3b8;
 }

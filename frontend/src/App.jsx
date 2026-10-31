@@ -1,19 +1,20 @@
-import { FaShieldAlt } from 'react-icons/fa'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import PublicLayout from './components/layout/PublicLayout'
+import PlaceholderPage from './pages/public/PlaceholderPage'
 
 function App() {
   return (
-    <div className="container py-5">
-      <div className="card shadow-sm mx-auto" style={{ maxWidth: 520 }}>
-        <div className="card-body text-center p-4">
-          <FaShieldAlt size={48} className="text-primary mb-3" />
-          <h1 className="h3">DigiVerify</h1>
-          <p className="text-muted">
-            Plateforme sécurisée d'émission et d'authentification de diplômes numériques.
-          </p>
-          <button className="btn btn-primary">Vérifier un diplôme</button>
-        </div>
-      </div>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route element={<PublicLayout />}>
+          <Route path="/" element={<PlaceholderPage title="Accueil" />} />
+          <Route path="/verifier" element={<PlaceholderPage title="Vérifier un diplôme" />} />
+          <Route path="/connexion" element={<PlaceholderPage title="Connexion" />} />
+          <Route path="/inscription" element={<PlaceholderPage title="Créer un compte" />} />
+          <Route path="*" element={<PlaceholderPage title="Page introuvable" />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   )
 }
 
