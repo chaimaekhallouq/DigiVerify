@@ -57,3 +57,35 @@ export async function getInstitutionDiplomas() {
     throw new Error('Impossible de charger les diplômes. Veuillez réessayer.')
   }
 }
+// Crée un diplôme en brouillon (non signé).
+// Endpoint PROPOSÉ : POST /diplomas
+// Requête : { studentId, title, level, graduationDate, grade? }
+// Réponse : { id, student, title, level, graduationDate, issuedAt: null, status: 'DRAFT' }
+export async function createDiploma(values) {
+  if (USE_MOCKS) {
+    await wait(700)
+    const created = {
+      id: `DV-2026-${String(Date.now()).slice(-4)}`,
+      student: values.studentName,
+      title: values.title.trim(),
+      level: values.level,
+      graduationDate: values.graduationDate,
+      issuedAt: null,
+      status: 'DRAFT',
+    }
+    // On l'ajoute à la liste en mémoire pour qu'il apparaisse dans « Diplômes »
+    mockInstitutionDiplomas.unshift(created)
+    return created
+  }
+
+  try {
+    const { studentName: _studentName, ...payload } = values // le nom n'est utile qu'au mock
+    const { data } = await axiosClient.post('/diplomas', payload)
+    return data
+  } catch (err) {
+    if (err.response?.status === 422) {
+      throw new Error('Les informations saisies sont invalides.')
+    }
+    throw new Error('Impossible de créer le diplôme. Veuillez réessayer.')
+  }
+}

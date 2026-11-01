@@ -36,3 +36,5 @@ export const ROLE_HOME = {
   STUDENT: '/etudiant',
   RECRUITER: '/recruteur',
 }
+// Niveaux de diplôme proposés dans le formulaire (à confirmer avec le backend)
+export const DIPLOMA_LEVELS = ['BTS', 'BUT', 'Licence', 'Master', 'Ingénieur', 'Doctorat']

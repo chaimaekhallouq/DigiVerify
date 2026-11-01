@@ -16,6 +16,7 @@ import AdminDashboard from './pages/admin/AdminDashboard'
 import InstitutionDashboard from './pages/institution/InstitutionDashboard'
 import StudentsPage from './pages/institution/StudentsPage'
 import DiplomasPage from './pages/institution/DiplomasPage'
+import CreateDiplomaPage from './pages/institution/CreateDiplomaPage'
 import StudentDashboard from './pages/student/StudentDashboard'
 import RecruiterDashboard from './pages/recruiter/RecruiterDashboard'
 
@@ -63,6 +64,7 @@ function App() {
                 '/etablissement': <InstitutionDashboard />,
                 '/etablissement/etudiants': <StudentsPage />,
                 '/etablissement/diplomes': <DiplomasPage />,
+                '/etablissement/diplomes/nouveau': <CreateDiplomaPage />,
               })}
             </Route>
           </Route>
