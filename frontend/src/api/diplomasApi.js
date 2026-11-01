@@ -1,5 +1,6 @@
 import axiosClient from './axiosClient'
 import { mockStudentDiplomas } from '../mocks/studentDiplomas'
+import { mockInstitutionDiplomas } from '../mocks/institutionDiplomas'
 
 const USE_MOCKS = import.meta.env.VITE_USE_MOCKS === 'true'
 
@@ -36,5 +37,23 @@ export async function downloadDiplomaPdf(id) {
     return data
   } catch {
     throw new Error('Le téléchargement a échoué. Veuillez réessayer.')
+  }
+}
+
+// Diplômes de l'établissement connecté (tous statuts).
+// Endpoint PROPOSÉ : GET /diplomas
+// Réponse : [{ id, student, title, level, graduationDate, issuedAt, status }]
+// Le backend déduit l'établissement de l'utilisateur connecté.
+export async function getInstitutionDiplomas() {
+  if (USE_MOCKS) {
+    await wait(500)
+    return mockInstitutionDiplomas
+  }
+
+  try {
+    const { data } = await axiosClient.get('/diplomas')
+    return data
+  } catch {
+    throw new Error('Impossible de charger les diplômes. Veuillez réessayer.')
   }
 }

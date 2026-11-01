@@ -831,3 +831,53 @@ h1, h2, h3, h4, h5, h6 {
 .dv-modal__body {
   padding: 1.5rem;
 }
+
+
+
+/* ---------- 17. Filtre par statut ---------- */
+.dv-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.dv-filter__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid var(--dv-border);
+  border-radius: 999px;
+  background: var(--dv-surface);
+  color: var(--dv-text);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.dv-filter__btn:hover {
+  border-color: var(--dv-primary);
+  color: var(--dv-primary);
+}
+
+.dv-filter__btn.is-active {
+  border-color: var(--dv-primary);
+  background: var(--dv-primary);
+  color: #ffffff;
+}
+
+.dv-filter__count {
+  min-width: 1.4rem;
+  padding: 0 0.4rem;
+  border-radius: 999px;
+  background: var(--dv-primary-soft);
+  color: var(--dv-primary);
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.dv-filter__btn.is-active .dv-filter__count {
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}

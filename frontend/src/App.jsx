@@ -15,6 +15,7 @@ import ComponentsDemo from './pages/public/ComponentsDemo'
 import AdminDashboard from './pages/admin/AdminDashboard'
 import InstitutionDashboard from './pages/institution/InstitutionDashboard'
 import StudentsPage from './pages/institution/StudentsPage'
+import DiplomasPage from './pages/institution/DiplomasPage'
 import StudentDashboard from './pages/student/StudentDashboard'
 import RecruiterDashboard from './pages/recruiter/RecruiterDashboard'
 
@@ -61,6 +62,7 @@ function App() {
               {roleRoutes('INSTITUTION', {
                 '/etablissement': <InstitutionDashboard />,
                 '/etablissement/etudiants': <StudentsPage />,
+                '/etablissement/diplomes': <DiplomasPage />,
               })}
             </Route>
           </Route>
