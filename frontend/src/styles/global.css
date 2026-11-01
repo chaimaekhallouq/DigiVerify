@@ -797,3 +797,37 @@ h1, h2, h3, h4, h5, h6 {
   background: #ffffff;
   text-align: center;
 }
+
+/* ---------- 16. Fenêtre modale ---------- */
+.dv-modal__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1060;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 1rem;
+  overflow-y: auto;
+  background: rgba(15, 42, 74, 0.55);
+}
+
+.dv-modal {
+  width: 100%;
+  max-width: 580px;
+  margin: 3vh auto;
+  background: var(--dv-surface);
+  border-radius: var(--dv-radius);
+  box-shadow: 0 10px 30px rgba(15, 42, 74, 0.25);
+}
+
+.dv-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--dv-border);
+}
+
+.dv-modal__body {
+  padding: 1.5rem;
+}

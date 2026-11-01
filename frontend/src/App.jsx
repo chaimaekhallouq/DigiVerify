@@ -14,6 +14,7 @@ import ForbiddenPage from './pages/public/ForbiddenPage'
 import ComponentsDemo from './pages/public/ComponentsDemo'
 import AdminDashboard from './pages/admin/AdminDashboard'
 import InstitutionDashboard from './pages/institution/InstitutionDashboard'
+import StudentsPage from './pages/institution/StudentsPage'
 import StudentDashboard from './pages/student/StudentDashboard'
 import RecruiterDashboard from './pages/recruiter/RecruiterDashboard'
 
@@ -59,6 +60,7 @@ function App() {
             <Route element={<DashboardLayout />}>
               {roleRoutes('INSTITUTION', {
                 '/etablissement': <InstitutionDashboard />,
+                '/etablissement/etudiants': <StudentsPage />,
               })}
             </Route>
           </Route>
