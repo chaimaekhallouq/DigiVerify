@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { FaPlus, FaRedo } from 'react-icons/fa'
+import { FaPlus, FaRedo, FaEye } from 'react-icons/fa'
 import { useFetch } from '../../hooks/useFetch'
 import { getInstitutionDiplomas } from '../../api/diplomasApi'
 import { formatDate } from '../../utils/formatters'
@@ -18,6 +18,16 @@ const columns = [
   { key: 'level', header: 'Niveau' },
   { key: 'issuedAt', header: "Date d'émission", render: (row) => formatDate(row.issuedAt) },
   { key: 'status', header: 'Statut', render: (row) => <StatusBadge status={row.status} /> },
+  {
+    key: 'actions',
+    header: 'Actions',
+    render: (row) => (
+      <Link to={`/etablissement/diplomes/${row.id}`} className="btn btn-outline-primary btn-sm">
+        <FaEye className="me-2" />
+        Voir
+      </Link>
+    ),
+  },
 ]
 
 function DiplomasPage() {

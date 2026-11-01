@@ -86,3 +86,21 @@ export async function forgotPassword(email) {
     throw new Error('Impossible de contacter le serveur. Veuillez réessayer plus tard.')
   }
 }
+
+// Endpoint PROPOSÉ : POST /auth/logout  (le backend supprime le cookie de session)
+export async function logout() {
+  if (USE_MOCKS) return
+  try {
+    await axiosClient.post('/auth/logout')
+  } catch {
+    // Même en cas d'échec réseau, on déconnecte l'interface locale
+  }
+}
+
+// Endpoint PROPOSÉ : GET /auth/me  → { user: {...} }
+// Sert à vérifier que la session est encore valide au chargement de l'application.
+export async function getMe() {
+  if (USE_MOCKS) return null
+  const { data } = await axiosClient.get('/auth/me')
+  return data.user
+}

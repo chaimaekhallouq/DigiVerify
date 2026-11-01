@@ -89,3 +89,79 @@ export async function createDiploma(values) {
     throw new Error('Impossible de créer le diplôme. Veuillez réessayer.')
   }
 }
+// ---------- Détail, émission et révocation (établissement) ----------
+
+const MOCK_INSTITUTION_NAME = 'Université de Lyon'
+
+// Complète un diplôme fictif avec les champs que fournirait le backend
+function buildDetail(d) {
+  const signed = d.status === 'ISSUED' || d.status === 'REVOKED'
+  return {
+    ...d,
+    institution: MOCK_INSTITUTION_NAME,
+    verificationUrl: signed ? `${window.location.origin}/verifier/${d.id}` : null,
+    sha256: signed ? 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855' : null,
+    signatureAlgorithm: signed ? 'RSA-PSS (SHA-256)' : null,
+    revokedReason: d.revokedReason || null,
+  }
+}
+
+// Endpoint PROPOSÉ : GET /diplomas/{id}
+// Réponse : { id, student, institution, title, level, graduationDate, issuedAt, status,
+//             verificationUrl, sha256, signatureAlgorithm, revokedReason }
+export async function getDiploma(id) {
+  if (USE_MOCKS) {
+    await wait(400)
+    const d = mockInstitutionDiplomas.find((x) => x.id === id)
+    if (!d) throw new Error('Diplôme introuvable.')
+    return buildDetail(d)
+  }
+
+  try {
+    const { data } = await axiosClient.get(`/diplomas/${id}`)
+    return data
+  } catch (err) {
+    if (err.response?.status === 404) throw new Error('Diplôme introuvable.')
+    throw new Error('Impossible de charger le diplôme. Veuillez réessayer.')
+  }
+}
+
+// Le BACKEND calcule l'empreinte SHA-256, signe en RSA-PSS, génère le PDF et le QR Code.
+// Endpoint PROPOSÉ : POST /diplomas/{id}/issue  → diplôme mis à jour (statut ISSUED)
+export async function issueDiploma(id) {
+  if (USE_MOCKS) {
+    await wait(1000)
+    const d = mockInstitutionDiplomas.find((x) => x.id === id)
+    if (!d || d.status !== 'DRAFT') throw new Error('Seul un brouillon peut être signé et émis.')
+    d.status = 'ISSUED'
+    d.issuedAt = new Date().toISOString()
+    return buildDetail(d)
+  }
+
+  try {
+    const { data } = await axiosClient.post(`/diplomas/${id}/issue`)
+    return data
+  } catch (err) {
+    if (err.response?.status === 409) throw new Error('Ce diplôme a déjà été émis.')
+    throw new Error("La signature du diplôme a échoué. Veuillez réessayer.")
+  }
+}
+
+// Endpoint PROPOSÉ : POST /diplomas/{id}/revoke  { reason }  → diplôme mis à jour
+export async function revokeDiploma(id, reason) {
+  if (USE_MOCKS) {
+    await wait(700)
+    const d = mockInstitutionDiplomas.find((x) => x.id === id)
+    if (!d || d.status !== 'ISSUED') throw new Error('Seul un diplôme émis peut être révoqué.')
+    d.status = 'REVOKED'
+    d.revokedReason = reason.trim()
+    return buildDetail(d)
+  }
+
+  try {
+    const { data } = await axiosClient.post(`/diplomas/${id}/revoke`, { reason })
+    return data
+  } catch {
+    throw new Error('La révocation a échoué. Veuillez réessayer.')
+  }
+}

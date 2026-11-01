@@ -1,6 +1,7 @@
 import axiosClient from './axiosClient'
 import { mockInstitutionDashboard } from '../mocks/institutionDashboard'
 import { mockAdminDashboard } from '../mocks/adminDashboard'
+import { mockAdminReports } from '../mocks/adminReports'
 
 const USE_MOCKS = import.meta.env.VITE_USE_MOCKS === 'true'
 
@@ -39,5 +40,23 @@ export async function getAdminDashboard() {
     return data
   } catch {
     throw new Error('Impossible de charger les statistiques. Veuillez réessayer.')
+  }
+}
+
+// Rapports globaux (administrateur).
+// Endpoint PROPOSÉ : GET /stats/admin/reports
+// Réponse : { verificationsByResult: { AUTHENTIC, MODIFIED, INVALID, REVOKED, UNTRUSTED },
+//             monthly: [{ month, issued, verified }] }
+export async function getAdminReports() {
+  if (USE_MOCKS) {
+    await wait(500)
+    return mockAdminReports
+  }
+
+  try {
+    const { data } = await axiosClient.get('/stats/admin/reports')
+    return data
+  } catch {
+    throw new Error('Impossible de charger les rapports. Veuillez réessayer.')
   }
 }

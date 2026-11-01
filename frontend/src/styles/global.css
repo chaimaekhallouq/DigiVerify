@@ -1,9 +1,5 @@
 /* ==========================================================
    DigiVerify – Charte graphique
-   1. Variables (design tokens)
-   2. Styles de base
-   3. Surcharge de Bootstrap (boutons, formulaires, liens)
-   4. Composants maison (cartes, badges de statut)
    ========================================================== */
 
 /* ---------- 1. Variables ---------- */
@@ -137,7 +133,6 @@ h1, h2, h3, h4, h5, h6 {
 .dv-status--invalid   { color: var(--dv-invalid);   background: var(--dv-invalid-soft); }
 .dv-status--revoked   { color: var(--dv-revoked);   background: var(--dv-revoked-soft); }
 .dv-status--untrusted { color: var(--dv-untrusted); background: var(--dv-untrusted-soft); }
-
 
 /* ---------- 5. Logo ---------- */
 .dv-logo {
@@ -299,7 +294,6 @@ h1, h2, h3, h4, h5, h6 {
   color: #94a3b8;
 }
 
-
 /* ---------- 8. Badge « brouillon » ---------- */
 .dv-status--draft { color: var(--dv-revoked); background: var(--dv-revoked-soft); }
 
@@ -420,7 +414,6 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0.8rem 1.25rem;
   border-top: 1px solid var(--dv-border);
 }
-
 
 /* ---------- 12. Page d'accueil ---------- */
 .dv-hero {
@@ -559,9 +552,6 @@ h1, h2, h3, h4, h5, h6 {
     padding: 1.75rem;
   }
 }
-
-
-
 
 /* ---------- 13. Mise en page des tableaux de bord ---------- */
 :root {
@@ -744,7 +734,6 @@ h1, h2, h3, h4, h5, h6 {
   text-align: center;
 }
 
-
 /* ---------- 15. Cartes de diplômes et QR Code ---------- */
 .dv-diploma {
   height: 100%;
@@ -832,8 +821,6 @@ h1, h2, h3, h4, h5, h6 {
   padding: 1.5rem;
 }
 
-
-
 /* ---------- 17. Filtre par statut ---------- */
 .dv-filter {
   display: flex;
@@ -881,3 +868,367 @@ h1, h2, h3, h4, h5, h6 {
   background: rgba(255, 255, 255, 0.25);
   color: #ffffff;
 }
+
+/* ---------- 18. Diplôme (aperçu) ---------- */
+.dv-certificate {
+  position: relative;
+  padding: 0.75rem;
+  background: #fffdf7;
+  border: 1px solid var(--dv-border);
+  border-radius: var(--dv-radius);
+  box-shadow: var(--dv-shadow);
+  font-family: Georgia, 'Times New Roman', serif;
+}
+
+.dv-certificate__inner {
+  padding: 2rem 1.5rem;
+  border: 3px double var(--dv-navy);
+  text-align: center;
+}
+
+.dv-certificate__logo { color: var(--dv-primary); }
+
+.dv-certificate__institution {
+  margin: 0.5rem 0 0;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--dv-text-muted);
+}
+
+.dv-certificate__title {
+  margin: 0.75rem 0 1.25rem;
+  font-family: inherit;
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  letter-spacing: 0.25em;
+  color: var(--dv-navy);
+}
+
+.dv-certificate__text { margin: 0; font-style: italic; color: var(--dv-text-muted); }
+.dv-certificate__name { margin: 0.4rem 0; font-size: 1.7rem; font-weight: 700; color: var(--dv-navy); }
+.dv-certificate__degree { margin: 0.4rem 0; font-size: 1.25rem; font-weight: 700; }
+
+.dv-certificate__footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.75rem;
+  text-align: left;
+  font-family: var(--bs-body-font-family);
+  font-size: 0.8rem;
+  color: var(--dv-text-muted);
+}
+
+.dv-certificate__stamp {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  padding: 0.4rem 1.2rem;
+  transform: translate(-50%, -50%) rotate(-18deg);
+  border: 4px solid rgba(185, 28, 28, 0.35);
+  border-radius: 8px;
+  color: rgba(185, 28, 28, 0.35);
+  font: 700 clamp(1.3rem, 5vw, 2.2rem) var(--bs-body-font-family);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.dv-hash {
+  font-family: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+  font-size: 0.78rem;
+  word-break: break-all;
+}
+
+/* ---------- 19. Résultat de vérification ---------- */
+.dv-result {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.5rem;
+  border: 1px solid;
+  border-radius: var(--dv-radius);
+}
+
+.dv-result__icon { font-size: 2.4rem; line-height: 1; }
+.dv-result__title { margin: 0 0 0.25rem; color: inherit; font-size: 1.4rem; }
+.dv-result p { color: var(--dv-text); }
+
+.dv-result--authentic { background: var(--dv-authentic-soft); border-color: var(--dv-authentic); color: var(--dv-authentic); }
+.dv-result--modified  { background: var(--dv-modified-soft);  border-color: var(--dv-modified);  color: var(--dv-modified); }
+.dv-result--invalid   { background: var(--dv-invalid-soft);   border-color: var(--dv-invalid);   color: var(--dv-invalid); }
+.dv-result--revoked   { background: var(--dv-revoked-soft);   border-color: var(--dv-revoked);   color: var(--dv-revoked); }
+.dv-result--untrusted { background: var(--dv-untrusted-soft); border-color: var(--dv-untrusted); color: var(--dv-untrusted); }
+
+.dv-checks { margin: 0; padding: 0; list-style: none; }
+
+.dv-checks li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--dv-border);
+}
+
+.dv-checks li:last-child { border-bottom: 0; }
+
+/* ---------- 20. Zone de dépôt ---------- */
+.dv-dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1rem;
+  border: 2px dashed var(--dv-border);
+  border-radius: var(--dv-radius);
+  background: var(--dv-bg);
+  color: var(--dv-primary);
+  text-align: center;
+}
+
+.dv-dropzone p { color: var(--dv-text); }
+.dv-dropzone.is-dragging { border-color: var(--dv-primary); background: var(--dv-primary-soft); }
+.dv-dropzone.is-invalid { border-color: var(--dv-invalid); }
+
+/* ---------- 21. Graphiques en barres ---------- */
+.dv-bars { margin: 0; padding: 0; list-style: none; }
+
+.dv-bars__row {
+  display: grid;
+  grid-template-columns: 6.5rem 1fr 3.5rem;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.8rem;
+  font-size: 0.88rem;
+}
+
+.dv-bars__track { height: 12px; border-radius: 999px; background: var(--dv-bg); overflow: hidden; }
+.dv-bars__fill { height: 100%; border-radius: 999px; }
+.dv-bars__value { text-align: right; font-weight: 600; color: var(--dv-navy); }
+
+.dv-bars__fill--primary   { background: var(--dv-primary); }
+.dv-bars__fill--authentic { background: var(--dv-authentic); }
+.dv-bars__fill--modified  { background: var(--dv-modified); }
+.dv-bars__fill--invalid   { background: var(--dv-invalid); }
+.dv-bars__fill--revoked   { background: var(--dv-revoked); }
+.dv-bars__fill--untrusted { background: var(--dv-untrusted); }
+
+
+/* ---------- 19. Résultat de vérification ---------- */
+.dv-result {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.5rem;
+  border: 1px solid;
+  border-radius: var(--dv-radius);
+}
+
+.dv-result__icon { font-size: 2.4rem; line-height: 1; }
+.dv-result__title { margin: 0 0 0.25rem; color: inherit; font-size: 1.4rem; }
+.dv-result p { color: var(--dv-text); }
+
+.dv-result--authentic { background: var(--dv-authentic-soft); border-color: var(--dv-authentic); color: var(--dv-authentic); }
+.dv-result--modified  { background: var(--dv-modified-soft);  border-color: var(--dv-modified);  color: var(--dv-modified); }
+.dv-result--invalid   { background: var(--dv-invalid-soft);   border-color: var(--dv-invalid);   color: var(--dv-invalid); }
+.dv-result--revoked   { background: var(--dv-revoked-soft);   border-color: var(--dv-revoked);   color: var(--dv-revoked); }
+.dv-result--untrusted { background: var(--dv-untrusted-soft); border-color: var(--dv-untrusted); color: var(--dv-untrusted); }
+
+.dv-checks { margin: 0; padding: 0; list-style: none; }
+
+.dv-checks li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--dv-border);
+}
+
+.dv-checks li:last-child { border-bottom: 0; }
+
+/* ---------- 20. Zone de dépôt ---------- */
+.dv-dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1rem;
+  border: 2px dashed var(--dv-border);
+  border-radius: var(--dv-radius);
+  background: var(--dv-bg);
+  color: var(--dv-primary);
+  text-align: center;
+}
+
+.dv-dropzone p { color: var(--dv-text); }
+.dv-dropzone.is-dragging { border-color: var(--dv-primary); background: var(--dv-primary-soft); }
+.dv-dropzone.is-invalid { border-color: var(--dv-invalid); }
+
+
+
+/* ---------- 21. Graphiques en barres ---------- */
+.dv-bars { margin: 0; padding: 0; list-style: none; }
+
+.dv-bars__row {
+  display: grid;
+  grid-template-columns: 6.5rem 1fr 3.5rem;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.8rem;
+  font-size: 0.88rem;
+}
+
+.dv-bars__track { height: 12px; border-radius: 999px; background: var(--dv-bg); overflow: hidden; }
+.dv-bars__fill { height: 100%; border-radius: 999px; }
+.dv-bars__value { text-align: right; font-weight: 600; color: var(--dv-navy); }
+
+.dv-bars__fill--primary   { background: var(--dv-primary); }
+.dv-bars__fill--authentic { background: var(--dv-authentic); }
+.dv-bars__fill--modified  { background: var(--dv-modified); }
+.dv-bars__fill--invalid   { background: var(--dv-invalid); }
+.dv-bars__fill--revoked   { background: var(--dv-revoked); }
+.dv-bars__fill--untrusted { background: var(--dv-untrusted); }
+
+
+/* ---------- 18. Diplôme (aperçu) ---------- */
+.dv-certificate {
+  position: relative;
+  padding: 0.75rem;
+  background: #fffdf7;
+  border: 1px solid var(--dv-border);
+  border-radius: var(--dv-radius);
+  box-shadow: var(--dv-shadow);
+  font-family: Georgia, 'Times New Roman', serif;
+}
+
+.dv-certificate__inner {
+  padding: 2rem 1.5rem;
+  border: 3px double var(--dv-navy);
+  text-align: center;
+}
+
+.dv-certificate__logo { color: var(--dv-primary); }
+
+.dv-certificate__institution {
+  margin: 0.5rem 0 0;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--dv-text-muted);
+}
+
+.dv-certificate__title {
+  margin: 0.75rem 0 1.25rem;
+  font-family: inherit;
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  letter-spacing: 0.25em;
+  color: var(--dv-navy);
+}
+
+.dv-certificate__text { margin: 0; font-style: italic; color: var(--dv-text-muted); }
+.dv-certificate__name { margin: 0.4rem 0; font-size: 1.7rem; font-weight: 700; color: var(--dv-navy); }
+.dv-certificate__degree { margin: 0.4rem 0; font-size: 1.25rem; font-weight: 700; }
+
+.dv-certificate__footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.75rem;
+  text-align: left;
+  font-family: var(--bs-body-font-family);
+  font-size: 0.8rem;
+  color: var(--dv-text-muted);
+}
+
+.dv-certificate__stamp {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  padding: 0.4rem 1.2rem;
+  transform: translate(-50%, -50%) rotate(-18deg);
+  border: 4px solid rgba(185, 28, 28, 0.35);
+  border-radius: 8px;
+  color: rgba(185, 28, 28, 0.35);
+  font: 700 clamp(1.3rem, 5vw, 2.2rem) var(--bs-body-font-family);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.dv-hash {
+  font-family: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+  font-size: 0.78rem;
+  word-break: break-all;
+}
+
+/* ---------- 19. Résultat de vérification ---------- */
+.dv-result {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.5rem;
+  border: 1px solid;
+  border-radius: var(--dv-radius);
+}
+
+.dv-result__icon { font-size: 2.4rem; line-height: 1; }
+.dv-result__title { margin: 0 0 0.25rem; color: inherit; font-size: 1.4rem; }
+.dv-result p { color: var(--dv-text); }
+
+.dv-result--authentic { background: var(--dv-authentic-soft); border-color: var(--dv-authentic); color: var(--dv-authentic); }
+.dv-result--modified  { background: var(--dv-modified-soft);  border-color: var(--dv-modified);  color: var(--dv-modified); }
+.dv-result--invalid   { background: var(--dv-invalid-soft);   border-color: var(--dv-invalid);   color: var(--dv-invalid); }
+.dv-result--revoked   { background: var(--dv-revoked-soft);   border-color: var(--dv-revoked);   color: var(--dv-revoked); }
+.dv-result--untrusted { background: var(--dv-untrusted-soft); border-color: var(--dv-untrusted); color: var(--dv-untrusted); }
+
+.dv-checks { margin: 0; padding: 0; list-style: none; }
+
+.dv-checks li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--dv-border);
+}
+
+.dv-checks li:last-child { border-bottom: 0; }
+
+/* ---------- 20. Zone de dépôt ---------- */
+.dv-dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1rem;
+  border: 2px dashed var(--dv-border);
+  border-radius: var(--dv-radius);
+  background: var(--dv-bg);
+  color: var(--dv-primary);
+  text-align: center;
+}
+
+.dv-dropzone p { color: var(--dv-text); }
+.dv-dropzone.is-dragging { border-color: var(--dv-primary); background: var(--dv-primary-soft); }
+.dv-dropzone.is-invalid { border-color: var(--dv-invalid); }
+
+/* ---------- 21. Graphiques en barres ---------- */
+.dv-bars { margin: 0; padding: 0; list-style: none; }
+
+.dv-bars__row {
+  display: grid;
+  grid-template-columns: 6.5rem 1fr 3.5rem;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.8rem;
+  font-size: 0.88rem;
+}
+
+.dv-bars__track { height: 12px; border-radius: 999px; background: var(--dv-bg); overflow: hidden; }
+.dv-bars__fill { height: 100%; border-radius: 999px; }
+.dv-bars__value { text-align: right; font-weight: 600; color: var(--dv-navy); }
+
+.dv-bars__fill--primary   { background: var(--dv-primary); }
+.dv-bars__fill--authentic { background: var(--dv-authentic); }
+.dv-bars__fill--modified  { background: var(--dv-modified); }
+.dv-bars__fill--invalid   { background: var(--dv-invalid); }
+.dv-bars__fill--revoked   { background: var(--dv-revoked); }
+.dv-bars__fill--untrusted { background: var(--dv-untrusted); }
